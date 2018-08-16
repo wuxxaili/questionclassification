@@ -30,11 +30,13 @@ class Label():
         for i,l in enumerate(list(set(label))):
             self.d[l] = M[i]
             self.dnum[l] = i
+            
     def get_vector_label(self,label):
         L = []
         for l in label:
             L.append(self.d[l])
         return np.array(L)
+        
     def get_num_label(self,label):
         L = []
         for l in label:
