@@ -23,6 +23,25 @@ class Featurizer():
             else: feature_w2v.append(reduce((lambda x, y: x + y), temp2)/float(len(temp2)))
         return np.array(feature_w2v)
 
+class Label():
+    def __init__(self,label):
+        self.d,self.dnum = {},{}
+        M = np.diag(np.ones(len(set(label))))
+        for i,l in enumerate(list(set(label))):
+            self.d[l] = M[i]
+            self.dnum[l] = i
+    def get_vector_label(self,label):
+        L = []
+        for l in label:
+            L.append(self.d[l])
+        return np.array(L)
+    def get_num_label(self,label):
+        L = []
+        for l in label:
+            L.append(self.dnum[l])
+        return np.array(L)
+        
+        
 #df = pd.read_csv('train.csv')
 #df['Question']
 #f = Featurizer(df['Question'])
